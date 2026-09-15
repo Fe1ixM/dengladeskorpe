@@ -1,0 +1,28 @@
+import { useLoaderData } from "react-router";
+import PageHeader from "../components/header/pageHeader.jsx";
+import headerImg from "../../assets/headers/headerImg.png";
+import Dishes from "../components/dishes/Dishes.jsx";
+
+const Home = () => {
+  const { dishes, categories } = useLoaderData();
+
+  return (
+    <article>
+      <PageHeader title="DEN GLADE" subTitle="SKORPE" headerImg={headerImg} />
+      <div className={styles.header__subtitle}>
+        <h3>Velkommen til Den Glade Skorpe!</h3>
+        <p className={styles.header__subtitle}>
+          Hos os handler det om den perfekte pizza med den sprødeste skorpe. Vi
+          bruger kun de bedste råvarer til både klassiske favoritter og
+          spændende specialiteter som &#34;Parma Drama&#34; og &rdquo;Rabbit
+          Royale&rdquo;. Uanset om du er til en lille, personlig pizza eller en
+          stor familiedeling, så finder du det hos os. Kom forbi og nyd en pizza
+          lavet med kærlighed, eller bestil den, hent den og nyd den derhjemme!
+        </p>
+      </div>
+      <Dishes dishes={dishes} categories={categories} />
+    </article>
+  );
+};
+
+export default Home;
