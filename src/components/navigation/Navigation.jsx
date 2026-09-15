@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
+import logo from "/logo.png";
+import Kurv from "../kurv/Kurv";
+import { useAuthContext } from "../../context/useAuthContext";
 import styles from "../navigation/navigation.module.css";
 
 const navLinks = [
@@ -23,18 +26,64 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="navigation">
+    <nav className={styles.navigation}>
+      {/* Logo */}
       <Link to="/" onClick={closeMenu}>
-        <img className="logo" src={logo} alt="logo" />
+        <img className={styles.logo} src={logo} alt="logo" />
       </Link>
 
-      <div className="navigation__burger">
+      {/* Burger + Kurv */}
+      <div className={styles.navigation__burger}>
         <NavLink to="/kurv" onClick={closeMenu}>
           <Kurv />
         </NavLink>
 
-        {/* Hamburger menu goes here */}
+        <button
+          className={styles.hamburger}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Åbn menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
+
+      {/* Navigation links */}
+      <ul className={`${styles.navLinks} ${isOpen ? styles.open : ""}`}>
+        {navLinks.map((link) => (
+          <li key={link.to}>
+            <NavLink to={link.to} onClick={closeMenu}>
+              {link.label}
+            </NavLink>
+          </li>
+        ))}
+
+        {/* Login / Logout */}
+        {isLoggedIn ? (
+          <>
+            <li>
+              <NavLink to="/backoffice" onClick={closeMenu}>
+                Backoffice
+              </NavLink>
+            </li>
+
+            <li>
+              <button className={styles.logout} onClick={handleLogout}>
+                Log ud
+              </button>
+            </li>
+          </>
+        ) : (
+          <li>
+            <NavLink to="/login" onClick={closeMenu}>
+              Login
+            </NavLink>
+          </li>
+        )}
+      </ul>
     </nav>
   );
 };
+
+export default Navigation;
