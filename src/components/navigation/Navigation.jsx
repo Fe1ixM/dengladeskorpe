@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import logo from "/logo.png";
 import Kurv from "../kurv/Kurv";
-import { useAuthContext } from "../../context/useAuthContext";
+import { useAuthContext } from "../../context/UseAuthContext";
 import styles from "../navigation/navigation.module.css";
 
 const navLinks = [
