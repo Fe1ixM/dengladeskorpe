@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router";
-import PageHeader from "../components/header/pageHeader.jsx";
-import headerImg from "../../assets/headers/headerImg.png";
+import PageHeader from "../../components/header/PageHeader.jsx";
+import headerImg from "../../assets/headerImg.png";
 import Dishes from "../components/dishes/Dishes.jsx";
 
 const Home = () => {
