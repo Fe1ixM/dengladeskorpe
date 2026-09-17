@@ -1,7 +1,6 @@
 import { useState } from "react";
-
 import { AuthContext } from "./AuthContext";
-import { serverPath } from "../settings";
+import { serverPath } from "../../settings";
 
 export default function AuthProvider({ children }) {
   const [token, setToken] = useState(() => {

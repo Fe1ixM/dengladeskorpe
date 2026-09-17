@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "/logo.png";
 import Kurv from "../kurv/Kurv";
-import { useAuthContext } from "../../context/UseAuthContext";
+
 import styles from "../navigation/navigation.module.css";
+import { useAuthContext } from "../../context/UseAuthContext";
 
 const navLinks = [
   { to: "/", label: "Forside" },

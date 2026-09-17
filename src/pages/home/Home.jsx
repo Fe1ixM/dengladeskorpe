@@ -1,7 +1,8 @@
-import { useLoaderData } from "react-router";
+import { useLoaderData } from "react-router-dom";
 import PageHeader from "../../components/header/PageHeader.jsx";
 import headerImg from "../../assets/headerImg.png";
-import Dishes from "../components/dishes/Dishes.jsx";
+import Dishes from "../../components/dishes/Dishes.jsx";
+import styles from "./home.module.css";
 
 const Home = () => {
   const { dishes, categories } = useLoaderData();

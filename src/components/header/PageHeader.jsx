@@ -1,4 +1,4 @@
-import styles from "../header/pagehader.module.css";
+import styles from "../header/pageheader.module.css";
 import headerImg from "../../assets/headerImg.png";
 
 export default function PageHeader({ title, subTitle }) {
