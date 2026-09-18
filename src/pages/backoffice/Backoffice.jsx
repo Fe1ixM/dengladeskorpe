@@ -1,6 +1,7 @@
 import { Link, useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import DishEditForm from "../../components/dishes/DishEditForm";
+import { useCrud } from "../../hooks/useCrud";
 import styles from "./backoffice.module.css";
 
 const Backoffice = () => {
@@ -15,6 +16,7 @@ const Backoffice = () => {
 
   const [view, setView] = useState("dishes");
   const [selectedDish, setSelectedDish] = useState(null);
+  const { remove } = useCrud();
 
   const startNewDish = () => {
     setSelectedDish({
@@ -54,6 +56,12 @@ const Backoffice = () => {
                 <strong>{dish.title}</strong>
                 <button type="button" onClick={() => setSelectedDish(dish)}>
                   Rediger
+                </button>
+                <button
+                  type="button"
+                  onClick={() => remove("dish", dish._id || dish.id)}
+                >
+                  Slet
                 </button>
               </li>
             ))}
