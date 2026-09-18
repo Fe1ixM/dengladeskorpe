@@ -2,11 +2,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useCrud } from "../../hooks/useCrud";
-import Button from "../../../components/button/Button";
-import styles from "./form.module.css";
+import Button from "../button/Button";
+import styles from "./dishForm.module.css";
 
 const DishEditForm = ({ dish, categories, ingredients, onClose }) => {
-  const { update } = useCrud();
+  const { create, update } = useCrud();
+  const isNewDish = !dish?._id;
 
   const schema = yup.object().shape({
     title: yup.string().required("Titel er påkrævet"),
@@ -27,19 +28,25 @@ const DishEditForm = ({ dish, categories, ingredients, onClose }) => {
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schema),
-    // defaultValues forudfylder felterne med rettens nuværende data.
     defaultValues: {
-      title: dish.title,
-      priceNormal: dish.price?.normal,
-      priceFamily: dish.price?.family,
-      ingredients: dish.ingredients,
-      category: dish.category?.name || dish.category,
+      title: dish?.title ?? "",
+      priceNormal: dish?.price?.normal ?? "",
+      priceFamily: dish?.price?.family ?? "",
+      ingredients:
+        dish?.ingredients?.map((ingredient) =>
+          typeof ingredient === "string" ? ingredient : ingredient.name,
+        ) ?? [],
+      category: dish?.category?.name || dish?.category || "",
     },
   });
 
   const onSubmit = async (data) => {
     const formData = new FormData();
-    formData.append("id", dish._id);
+
+    if (!isNewDish) {
+      formData.append("id", dish._id);
+    }
+
     formData.append("title", data.title);
     formData.append(
       "price",
@@ -48,18 +55,29 @@ const DishEditForm = ({ dish, categories, ingredients, onClose }) => {
         family: data.priceFamily ? Number(data.priceFamily) : 0,
       }),
     );
-    formData.append("ingredients", data.ingredients);
+
+    if (Array.isArray(data.ingredients)) {
+      data.ingredients.forEach((ingredient) => {
+        formData.append("ingredients", ingredient);
+      });
+    } else if (data.ingredients) {
+      formData.append("ingredients", data.ingredients);
+    }
+
     formData.append("category", data.category);
+
     if (data.image && data.image[0]) {
       formData.append("file", data.image[0]);
     }
 
     try {
-      await update("dish", formData);
+      if (isNewDish) {
+        await create("dish", formData);
+      } else {
+        await update("dish", formData);
+      }
       onClose();
-    } catch {
-      // Fejl vises allerede som toast fra useCrud.
-    }
+    } catch {}
   };
 
   return (
@@ -92,7 +110,7 @@ const DishEditForm = ({ dish, categories, ingredients, onClose }) => {
         <label htmlFor="ingredients">Ingredienser:</label>
         <select id="ingredients" multiple {...register("ingredients")}>
           {ingredients.map((ing) => (
-            <option key={ing._id} value={ing.name}>
+            <option key={ing._id || ing.name} value={ing.name}>
               {ing.name}
             </option>
           ))}
@@ -104,7 +122,7 @@ const DishEditForm = ({ dish, categories, ingredients, onClose }) => {
         <select id="category" {...register("category")}>
           <option value="">Vælg</option>
           {categories.map((cat) => (
-            <option key={cat._id} value={cat.name}>
+            <option key={cat._id || cat.name} value={cat.name}>
               {cat.name}
             </option>
           ))}
@@ -121,7 +139,9 @@ const DishEditForm = ({ dish, categories, ingredients, onClose }) => {
 
       <Button
         type="submit"
-        buttonText={isSubmitting ? "Gemmer..." : "Opdater ret"}
+        buttonText={
+          isSubmitting ? "Gemmer..." : isNewDish ? "Tilføj ret" : "Opdater ret"
+        }
       />
     </form>
   );

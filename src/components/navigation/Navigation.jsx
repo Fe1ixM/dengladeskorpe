@@ -1,15 +1,11 @@
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import logo from "/logo.png";
-import Kurv from "../kurv/Kurv";
-
-import styles from "../navigation/navigation.module.css";
-import { useAuthContext } from "../../context/UseAuthContext";
+import styles from "./navigation.module.css";
+import { useAuthContext } from "../../context/useAuthContext";
 
 const navLinks = [
   { to: "/", label: "Forside" },
-  { to: "/personalet", label: "Personalet" },
-  { to: "/kontakt", label: "Kontakt" },
+  { to: "/backoffice", label: "Backoffice" },
   { to: "/kurv", label: "Kurv" },
 ];
 
@@ -28,17 +24,12 @@ const Navigation = () => {
 
   return (
     <nav className={styles.navigation}>
-      {/* Logo */}
       <Link to="/" onClick={closeMenu}>
-        <img className={styles.logo} src={logo} alt="logo" />
+        <span className={styles.logo}>DEN GLADE SKORPE</span>
       </Link>
 
-      {/* Burger + Kurv */}
       <div className={styles.navigation__burger}>
-        <NavLink to="/kurv" onClick={closeMenu}>
-          <Kurv />
-        </NavLink>
-
+        <span className={styles.cart}>Kurv</span>
         <button
           className={styles.hamburger}
           onClick={() => setIsOpen(!isOpen)}
@@ -50,7 +41,6 @@ const Navigation = () => {
         </button>
       </div>
 
-      {/* Navigation links */}
       <ul className={`${styles.navLinks} ${isOpen ? styles.open : ""}`}>
         {navLinks.map((link) => (
           <li key={link.to}>
@@ -60,24 +50,15 @@ const Navigation = () => {
           </li>
         ))}
 
-        {/* Login / Logout */}
         {isLoggedIn ? (
-          <>
-            <li>
-              <NavLink to="/backoffice" onClick={closeMenu}>
-                Backoffice
-              </NavLink>
-            </li>
-
-            <li>
-              <button className={styles.logout} onClick={handleLogout}>
-                Log ud
-              </button>
-            </li>
-          </>
+          <li>
+            <button className={styles.logout} onClick={handleLogout}>
+              Log ud
+            </button>
+          </li>
         ) : (
           <li>
-            <NavLink to="/login" onClick={closeMenu}>
+            <NavLink to="/backoffice" onClick={closeMenu}>
               Login
             </NavLink>
           </li>

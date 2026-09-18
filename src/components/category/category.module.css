@@ -1,0 +1,28 @@
+.category__component {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category__img,
+.category img {
+  width: 100%;
+  opacity: 70%;
+}
+
+.category__text,
+.category h3 {
+  position: absolute;
+  text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 35px;
+}

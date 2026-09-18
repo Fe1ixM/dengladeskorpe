@@ -1,10 +1,19 @@
 import { serverPath } from "../settings";
 
 const getData = async (path, errorText = "Fejl ved hentning") => {
-  const res = await fetch(`${serverPath}${path}`);
-  if (!res.ok) throw new Response(errorText, { status: res.status });
-  const json = await res.json();
-  return json.data;
+  try {
+    const res = await fetch(`${serverPath}${path}`);
+    if (!res.ok) {
+      console.warn(errorText, res.status);
+      return [];
+    }
+
+    const json = await res.json();
+    return json?.data ?? [];
+  } catch (error) {
+    console.warn(`Fetch failed for ${path}:`, error);
+    return [];
+  }
 };
 
 export const homeLoader = async () => {
@@ -35,7 +44,7 @@ export const backOfficeLoader = async () => {
       getData("/messages"),
       getData("/employees"),
       getData("/categories"),
-      getData("/ingredient"),
+      getData("/ingredients"),
     ]);
   return { dishes, orders, messages, employees, categories, ingredients };
 };

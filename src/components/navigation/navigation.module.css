@@ -6,29 +6,28 @@
   padding: 1em 2em;
   align-items: center;
   background-color: #4a4a4a;
-
-  img {
-    width: 60px;
-    opacity: 70%;
-  }
-
-  .logo {
-    width: 50px;
-    margin: 9px 0 1px;
-  }
+  box-sizing: border-box;
 }
 
-.navigation__burger {
+.logo {
+  width: 50px;
+  margin: 9px 0 1px;
+  color: white;
+  font-weight: 700;
+}
+
+.navigation__burger,
+.navigationBurger {
   position: relative;
   z-index: 300;
   display: flex;
   align-items: center;
   gap: 20px;
+}
 
-  a {
-    display: flex;
-    align-items: center;
-  }
+.cart {
+  color: white;
+  font-weight: 600;
 }
 
 .hamburger {
@@ -45,14 +44,14 @@
   background: transparent;
   width: 30px;
   height: 30px;
+}
 
-  span {
-    display: block;
-    width: 25px;
-    height: 2px;
-    background-color: white;
-    transition: all 0.3s ease;
-  }
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: white;
+  transition: all 0.3s ease;
 }
 
 .navLinks {
@@ -70,52 +69,51 @@
   padding: 0;
   align-items: center;
   justify-content: center;
+}
 
-  &.open {
-    display: flex;
-  }
+.navLinks.open,
+.open {
+  display: flex;
+}
 
-  li {
-    padding: 1rem;
-    text-align: center;
+.navLinks li {
+  padding: 1rem;
+  text-align: center;
+}
 
-    a {
-      color: #ffffff;
-      text-decoration: none;
-      display: block;
-      position: relative;
-      transition: color 0.3s;
-      font-family: "Just Another Hand", cursive;
-      font-size: 40px;
+.navLinks a,
+.logout {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  position: relative;
+  transition: color 0.3s;
+  font-family: "Just Another Hand", cursive;
+  font-size: 40px;
+}
 
-      &::after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        transform: scaleX(0);
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        transform-origin: bottom right;
-        transition: transform 0.3s ease-out;
-      }
+.navLinks a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
 
-      &:hover::after {
-        transform: scaleX(1);
-        transform-origin: bottom left;
-      }
-    }
-  }
+.navLinks a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 .logout {
-  color: #ffffff;
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
-  font-family: "Just Another Hand", cursive;
-  font-size: 40px;
 }
 
 @media (min-width: 1024px) {
@@ -132,10 +130,10 @@
     background-color: transparent;
     padding-top: 20px;
     justify-content: initial;
+  }
 
-    li {
-      padding: 0;
-      margin: 0 1rem;
-    }
+  .navLinks li {
+    padding: 0;
+    margin: 0 1rem;
   }
 }

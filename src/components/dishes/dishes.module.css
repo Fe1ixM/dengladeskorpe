@@ -1,0 +1,84 @@
+.category {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 1rem 0.5rem;
+}
+
+.category__heading {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.category__navigation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #dfd4d1;
+  padding: 1rem;
+}
+
+.category__section {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.category__section:hover {
+  transform: translateY(-2px);
+}
+
+.category__section__header {
+  text-align: center;
+  padding: 1rem 0 0;
+}
+
+.category__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.dishLink {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.dish {
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f7f2ee;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.dishImage {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.dishTitle {
+  margin: 0;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.active {
+  outline: 3px solid #7a3d2d;
+  border-radius: 12px;
+}
+
+.dishList,
+.categoriesSection {
+  display: flex;
+  padding: 2em 0;
+}
+
+.categoriesSection {
+  background-color: #dfd4d1;
+  justify-content: center;
+}

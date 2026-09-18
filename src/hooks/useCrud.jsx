@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
-import { useAuthContext } from "../context/UseAuthContext";
-import { useRevalidator } from "react-router";
+import { useAuthContext } from "../context/useAuthContext";
+import { useRevalidator } from "react-router-dom";
 import { useState } from "react";
 import Swal from "sweetalert2";
 

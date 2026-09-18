@@ -1,18 +1,17 @@
 import { useLoaderData } from "react-router-dom";
-import PageHeader from "../../components/header/PageHeader.jsx";
-import headerImg from "../../assets/headerImg.png";
-import Dishes from "../../components/dishes/Dishes.jsx";
-import styles from "./home.module.css";
+import PageHeader from "../../components/header/PageHeader";
+import Dishes from "../../components/dishes/Dishes";
 
+// useLoaderData() henter det, homeLoader returnerede: { dishes, categories }.
 const Home = () => {
   const { dishes, categories } = useLoaderData();
 
   return (
     <article>
-      <PageHeader title="DEN GLADE" subTitle="SKORPE" headerImg={headerImg} />
-      <div className={styles.header__subtitle}>
+      <PageHeader title="DEN GLADE" subTitle="SKORPE" />
+      <div className="introText">
         <h3>Velkommen til Den Glade Skorpe!</h3>
-        <p className={styles.header__subtitle}>
+        <p className="introText">
           Hos os handler det om den perfekte pizza med den sprødeste skorpe. Vi
           bruger kun de bedste råvarer til både klassiske favoritter og
           spændende specialiteter som &#34;Parma Drama&#34; og &rdquo;Rabbit

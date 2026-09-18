@@ -1,0 +1,55 @@
+.button {
+  width: 80%;
+  background-color: #4a4a4a;
+  border: 1px solid white;
+  border-radius: 50px;
+  margin: 2em;
+  padding: 0.2em;
+}
+
+.button h4,
+.buttonText {
+  font-size: 30px;
+  color: white;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.small {
+  width: auto;
+  margin-top: 0;
+  padding: 0 0.6em;
+}
+
+.small h4,
+.small .buttonText {
+  font-size: 20px;
+  margin: 4px 8px;
+}
+
+.red {
+  width: auto;
+  margin-top: 0;
+  padding: 0 0.6em;
+  background-color: #b3261e;
+}
+
+.red h4,
+.red .buttonText {
+  font-size: 20px;
+  margin: 4px 8px;
+}
+
+@media (min-width: 768px) {
+  .button {
+    width: 40%;
+  }
+
+  .small,
+  .red {
+    width: auto;
+  }
+}
